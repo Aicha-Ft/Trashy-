@@ -1,72 +1,66 @@
-.heading{
-    font-size: 32px;
-    font-weight: bold;
-    padding-left: 20px;
-    margin-top: 70px;
-    margin-bottom: -60px;
-}
-.para{
-    font-size: 22px;
-    font-weight: 500;
-    padding-left: 20px;
-    margin-bottom: 70px;
-    color: #A6ABB1;
-}
-.input-item{
-    padding-left: 20px;
-    width: 100%;
-    border-radius: 12px;
-    border: 2px solid #e2e2e2;
-    height: 70px;
-    ion-input{
-        margin-top: -12px;
-    }
-}
-.ion-item{
-    margin-top: 20px;
-}
-.forget-text{
-    a{
-        text-decoration: none;
-        color: black;
-    }
-    text-align: end;
-    margin-bottom: -10px;
-    padding-right: 20px;
-}
-.login-button{
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 50px;
-    --border-radius: 12px;
-    margin-top: 60px;
-    --box-shadow: none;
-}
-.google-button{
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 50px;
-    --border-radius: 12px;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    --box-shadow: none;
-}
-.signup-text{
-    a{
-        text-decoration: none;
-        color: var(--ion-color-primary);
-    }
-    padding-right: 20px;
-    text-align: end;
-}
-ion-footer {
-    display: block;
-    // position: relative;
-    -ms-flex-order: 1;
-    order: 1;
-    width: 100%;
-    z-index: 10;
-}
-.copyright{
+/* Centrer les éléments */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-}    
+    height: 100%;
+    padding: 20px; /* Ajouter un peu d'espace autour du contenu */
+  }
+  
+  /* Style pour l'image */
+  .header-image {
+    width: 200px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* Centrer le formulaire */
+  .centered-form {
+    width: 100%;
+    max-width: 400px; /* Ajustez la largeur maximale selon vos besoins */
+  }
+  
+  /* Style pour les titres */
+  .heading {
+    font-size: 24px; /* Taille de police pour les titres */
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour les paragraphes */
+  .para {
+    font-size: 16px; /* Taille de police pour les paragraphes */
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour les champs de formulaire */
+  .ion-item {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .input-item {
+    width: 100%;
+  }
+  
+  /* Style pour les boutons */
+  .login-button {
+    margin-top: 20px;
+    font-size: 16px; /* Taille de police pour les boutons */
+  }
+  
+  /* Style pour les liens */
+  .forget-text, .signup-text {
+    font-size: 14px; /* Taille de police pour les liens */
+    margin-top: 10px;
+  }
+  
+  .forget-text a, .signup-text a {
+    color: #007bff; /* Couleur des liens */
+    text-decoration: none;
+  }
+  
+  .forget-text a:hover, .signup-text a:hover {
+    text-decoration: underline; /* Souligner les liens au survol */
+  }

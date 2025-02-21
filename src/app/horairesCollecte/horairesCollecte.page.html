@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Horaires de Collecte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <!-- Liste des lieux -->
+    <div class="list-container" *ngIf="!selectedLocation">
+      <h2 class="list-title">Choisissez votre lieu :</h2>
+      <ion-list>
+        <ion-item *ngFor="let location of locations" (click)="selectLocation(location)">
+          <ion-label>{{ location }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Carte et horaires -->
+    <div class="map-container" *ngIf="selectedLocation">
+      <h2 class="map-title">Horaires de collecte à {{ selectedLocation }}</h2>
+      <div class="map-wrapper">
+        <!-- Carte Google Maps (remplacer YOUR_API_KEY par votre clé API) -->
+        <iframe
+          width="100%"
+          height="300"
+          frameborder="0"
+          style="border: 0"
+          [src]="getSafeMapUrl(selectedLocation)"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="schedule">
+        <p>Les horaires de collecte dans votre quartier seront :</p>
+        <ul>
+          <li>9h - 9h45</li>
+          <li>15h30 - 16h30</li>
+          <li>21h - 21h30</li>
+        </ul>
+      </div>
+      <ion-button class="back-button" (click)="goBack()">Retour</ion-button>
+    </div>
+  </div>
+</ion-content>
