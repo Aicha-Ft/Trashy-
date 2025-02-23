@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importer Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-espacecitoyen',
@@ -7,23 +7,25 @@ import { Router } from '@angular/router'; // Importer Router
   styleUrls: ['./espacecitoyen.page.scss'],
 })
 export class EspaceCitoyenPage {
-  constructor(private router: Router) {} // Injecter Router
+  constructor(private router: Router) {}
 
-  // Méthode pour consulter les horaires de collecte
   consulterHoraires() {
-    console.log('Navigation vers HorairesCollecte'); // Log de débogage
-    this.router.navigate(['/horairescollecte']); // Naviguer vers la page HorairesCollecte
+    console.log('Navigation vers HorairesCollecte');
+    this.router.navigate(['/horaire']);
   }
 
-  // Méthode pour signaler un problème
   signalerProbleme() {
-    console.log('Signaler un problème');
-    // Ajoutez ici la logique pour naviguer vers la page de signalement
+    console.log('Navigation vers SignalerProbleme');
+    this.router.navigate(['/signalerprobleme']);
   }
 
-  // Méthode pour se déconnecter
+  consulterRemuneration() {
+    console.log('Navigation vers Rémunération');
+    this.router.navigate(['/remuneration']);
+  }
+
   logout() {
     console.log('Déconnexion réussie');
-    this.router.navigate(['/login']); // Rediriger vers la page de connexion
+    this.router.navigate(['/login']);
   }
 }

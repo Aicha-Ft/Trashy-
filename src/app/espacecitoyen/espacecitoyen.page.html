@@ -9,7 +9,6 @@
     <img src="assets/img1.png" alt="Bienvenue" class="header-image">
     <h1 class="heading">Bienvenue dans votre espace citoyen</h1>
     <p class="para">Vous êtes maintenant connecté.</p>
-    
 
     <!-- Conteneur pour les boutons et les images -->
     <div class="button-grid">
@@ -26,6 +25,14 @@
         <img src="assets/img3.jpg" alt="Signaler" class="button-icon">
         <ion-button class="custom-button" (click)="signalerProbleme()" expand="block">
           Signaler un problème
+        </ion-button>
+      </div>
+
+      <!-- Nouveau bouton pour la rémunération -->
+      <div class="button-item">
+        <img src="assets/img5.png" alt="Rémunération" class="button-icon">
+        <ion-button class="custom-button" (click)="consulterRemuneration()" expand="block">
+          Consulter la rémunération
         </ion-button>
       </div>
     </div>

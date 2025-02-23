@@ -1,5 +1,4 @@
 <ion-content [fullscreen]="true">
-
   <!-- Login Page -->
   <div class="container" *ngIf="screen == 'signin'">
     <h1 class="heading">👋 Bienvenue dans l'espace de citoyen <br><br></h1>
@@ -52,7 +51,7 @@
       <ion-item lines="none" class="ion-item">
         <fieldset class="input-item">
           <legend>Confirmer mot de passe</legend> 
-          <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
+          <ion-input formControlName="confirmPassword" type="password" placeholder="*******"></ion-input>
         </fieldset>
       </ion-item>
       <p class="signup-text">déja membre&nbsp;<a (click)="change('signin')">se connecter ?</a></p>
@@ -76,6 +75,7 @@
   </div>
 
 </ion-content>
+
 <ion-footer color="white">
   <ion-toolbar>
     <p class="copyright">❤️ &nbsp;<a>Trashy</a></p>

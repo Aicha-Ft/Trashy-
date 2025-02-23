@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>🗺️ Consultation des horaires</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>📍 Choisissez un lieu</ion-label>
+    <ion-select (ionChange)="afficherHoraires($event.detail.value)">
+      <ion-select-option *ngFor="let lieu of lieux" [value]="lieu">🏘️ {{ lieu.nom }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngIf="horaires" class="fade-in">
+    <ion-card-header>
+      <ion-card-title>🕒 Horaires de collecte</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      🚮 Les horaires de collectes dans votre quartier seront : {{ horaires }}
+    </ion-card-content>
+
+    <div id="map" style="height: 300px; width: 100%; border-radius: 10px;"></div>
+  </ion-card>
+</ion-content>
+
+<style>
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>

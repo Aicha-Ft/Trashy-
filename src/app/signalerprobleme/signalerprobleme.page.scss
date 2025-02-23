@@ -1,0 +1,104 @@
+/* Style général de la page */
+ion-content {
+  --background: #f5f5f5; /* Fond légèrement gris */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement */
+  justify-content: center; /* Centrer verticalement */
+  height: 100vh; /* Prendre toute la hauteur de la page */
+  padding: 20px;
+}
+
+/* Conteneur principal */
+.container {
+  width: 100%;
+  max-width: 500px; /* Limite la largeur du conteneur */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement */
+  justify-content: center; /* Centrer verticalement */
+}
+
+/* Titre principal */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50; /* Couleur de texte sombre */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Liste des problèmes */
+.problem-list {
+  width: 100%;
+  background: #ffffff; /* Fond blanc */
+  border-radius: 15px; /* Coins arrondis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  margin-bottom: 20px;
+}
+
+/* Éléments de la liste */
+ion-item {
+  --background: transparent; /* Fond transparent */
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+  border-bottom: 1px solid #e0e0e0; /* Ligne de séparation */
+}
+
+/* Dernier élément de la liste */
+ion-item:last-child {
+  border-bottom: none; /* Supprimer la bordure du dernier élément */
+}
+
+/* Boutons radio */
+ion-radio {
+  --color-checked: #3498db; /* Couleur du bouton radio sélectionné */
+}
+
+/* Titres secondaires */
+.subtitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50; /* Couleur de texte sombre */
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Sélecteur de lieu */
+.location-select {
+  width: 100%;
+  background: #ffffff; /* Fond blanc */
+  border-radius: 15px; /* Coins arrondis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Zone de texte pour le commentaire */
+.comment-textarea {
+  width: 100%;
+  background: #ffffff; /* Fond blanc */
+  border-radius: 15px; /* Coins arrondis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Bouton Envoyer */
+.submit-button {
+  width: 100%;
+  --background: linear-gradient(135deg, #3498db, #2980b9); /* Dégradé bleu */
+  --border-radius: 25px; /* Coins arrondis */
+  --box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Ombre légère */
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: none; /* Pas de majuscules */
+  margin-top: 20px;
+}
+
+/* Bouton Envoyer au survol */
+.submit-button:hover {
+  --background: linear-gradient(135deg, #2980b9, #3498db); /* Dégradé inversé */
+}
