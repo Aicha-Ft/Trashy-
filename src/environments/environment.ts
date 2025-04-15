@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost/restAPI/'
+  API_URL: 'http://localhost/backend/controllers/auth.php'
 };
 
 /*

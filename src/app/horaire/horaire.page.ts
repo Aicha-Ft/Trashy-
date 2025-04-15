@@ -1,56 +1,52 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as L from 'leaflet';
+// src/app/horaire/horaire.page.ts
+import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { HoraireModalComponent } from './horairemodal/horairemodal.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-horaires',
+  selector: 'app-horaire',
   templateUrl: './horaire.page.html',
   styleUrls: ['./horaire.page.scss'],
 })
-export class HorairesPage implements OnInit, AfterViewInit {
-  lieux = [
-    { nom: 'Route Tataouine', lat: 33.003, lng: 10.456, horaires: '9h / 15h / 21h' },
-    { nom: 'Route Gabès', lat: 33.885, lng: 10.098, horaires: '8h30 / 13h45 / 20h' },
-    { nom: 'Route Ben Guerdane', lat: 32.867, lng: 10.960, horaires: '10h / 17h30 / 21h' },
-    { nom: 'Route Djerba', lat: 33.811, lng: 10.845, horaires: '9h / 15h / 21h' },
-    { nom: 'Route Ben Khdach', lat: 32.900, lng: 10.250, horaires: '9h / 13h / 19h' },
-    { nom: 'El Hara', lat: 33.400, lng: 10.600, horaires: '8h / 15h / 22h' },
-    { nom: 'Koutin', lat: 33.050, lng: 10.400, horaires: '9h / 15h / 21h' },
-    { nom: 'Smar', lat: 32.950, lng: 10.300, horaires: '10h / 18h / 22h' }
-  ];
+export class HorairePage {
   
+  horairesParLieu: { [key: string]: string[] } = {
+    'Route Tataouine': ['8h - 10h', '14h - 16h'],
+    'Route Gabes': ['9h - 11h', '15h - 17h'],
+    'Route Ben Gerdan': ['7h - 9h', '13h - 15h'],
+    'Route Djerba': ['10h - 12h', '18h - 20h'],
+    'Route Ben Khdach': ['6h - 8h', '12h - 14h'],
+    'El Hara': ['9h - 10h30', '18h - 19h30'],
+    'Koutin': ['7h30 - 9h30', '17h - 18h30'],
+    'Smar': ['8h - 10h', '16h - 18h']
+  };
 
-  horaires: string | null = null;
-  map: L.Map | undefined;
 
-  constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    this.initMap();
+  constructor(
+    private modalController: ModalController,
+    private http: HttpClient
+  ) {}
+  async openHoraireModal(formData: any) {
+    const selectedLocation = formData.selectedLocation;
+  
+    this.http.post('http://localhost/backend/controllers/horaire.php', {
+      lieu: selectedLocation
+    }).subscribe(async (response: any) => {
+      if (response.success) {
+        const modal = await this.modalController.create({
+          component: HoraireModalComponent,
+          componentProps: {
+            location: selectedLocation,
+            horaires: response.data.horaires
+          }
+        });
+  
+        await modal.present();
+      } else {
+        console.error('Erreur :', response.message);
+      }
+    });
   }
-
-  initMap() {
-    if (!this.map) {
-      this.map = L.map('map').setView([33.3575, 10.5000], 12);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(this.map);
-    }
-  }
-
-  afficherHoraires(lieu: any) {
-    this.horaires = lieu.horaires;
-    this.afficherCarte(lieu);
-  }
-
-  afficherCarte(lieu: any) {
-    if (this.map) {
-      this.map.setView([lieu.lat, lieu.lng], 14);
-      L.marker([lieu.lat, lieu.lng]).addTo(this.map)
-        .bindPopup(`<b>${lieu.nom}</b><br>${lieu.horaires}`)
-        .openPopup();
-    }
-  }
+  
 }

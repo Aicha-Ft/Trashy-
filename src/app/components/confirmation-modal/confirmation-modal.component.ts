@@ -4,12 +4,6 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Component, Input } from '@angular/core';
 
-@NgModule({
-  declarations: [ConfirmationModalComponent],
-  imports: [CommonModule, IonicModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-
 @Component({
   selector: 'app-confirmation-modal',
   template: `
@@ -36,4 +30,11 @@ export class  ConfirmationModalComponent {
   dismissModal(): void {
     this.modalController.dismiss();
   }
-} 
+}
+
+@NgModule({
+  declarations: [ConfirmationModalComponent],
+  imports: [CommonModule, IonicModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class ConfirmationModalModule {}

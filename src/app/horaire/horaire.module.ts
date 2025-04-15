@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HorairePageRoutingModule } from './horaire-routing.module';
 
-import { HorairesPage } from './horaire.page';
+import { HorairePage } from './horaire.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { HorairesPage } from './horaire.page';
     IonicModule,
     HorairePageRoutingModule
   ],
-  declarations: [HorairesPage]
+  declarations: [HorairePage],schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HorairePageModule {}

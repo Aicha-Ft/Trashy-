@@ -11,11 +11,16 @@
   
   /* Style pour l'image */
   .header-image {
-    width: 200px; /* Ajustez la taille selon vos besoins */
+    width: 150px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    border-radius: 80%; /* Image ronde */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre portée */
+    transition: transform 0.3s ease; /* Animation au survol */
   }
-  
+  .header-image:hover {
+    transform: scale(1.1); /* Effet de zoom au survol */
+  }
   /* Centrer le formulaire */
   .centered-form {
     width: 100%;
@@ -57,7 +62,7 @@
   }
   
   .forget-text a, .signup-text a {
-    color: #007bff; /* Couleur des liens */
+    color: #140f64; /* Couleur des liens */
     text-decoration: none;
   }
   

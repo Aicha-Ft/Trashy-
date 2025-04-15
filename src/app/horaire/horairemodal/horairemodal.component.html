@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Horaires pour {{ location }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- Vérification si des horaires sont présents -->
+    <ion-item *ngFor="let horaire of horaires">
+      {{ horaire }}
+    </ion-item>
+  </ion-list>
+
+  <!-- Si aucun horaire n'est disponible -->
+  <div *ngIf="horaires.length === 0">
+    <p>Aucun horaire disponible pour {{ location }}.</p>
+  </div>
+</ion-content>

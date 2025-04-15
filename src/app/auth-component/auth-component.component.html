@@ -1,83 +1,141 @@
-<ion-content [fullscreen]="true">
-  <!-- Login Page -->
-  <div class="container" *ngIf="screen == 'signin'">
-    <h1 class="heading">👋 Bienvenue dans l'espace de citoyen <br><br></h1>
-    <p class="para">Veuiller se connecter ici pour continuer</p>
-    <img src="assets/login.gif" alt="Image de bienvenue" class="header-image">
+<ion-content [fullscreen]="true" class="ion-padding" class="center-page">
 
-    <form [formGroup]="formData" class="centered-form">
-      <ion-item lines="none" class="ion-item">
+  <!-- Connexion -->
+  <div class="container" *ngIf="screen == 'signin'">
+    <h1 class="heading"><b>👋 Bienvenue dans l'espace citoyen</b></h1>
+    <p class="para">Veuillez vous connecter pour continuer.</p>
+    <img src="assets/login.gif" alt="Image de bienvenue" class="header-image" />
+
+    <form [formGroup]="loginForm" *ngIf="screen === 'signin'" (ngSubmit)="login()">
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>Email </legend> 
+          <legend>📧 Email</legend>
           <ion-input formControlName="email" type="email" placeholder="name@domain.com"></ion-input>
         </fieldset>
       </ion-item>
-      <ion-item lines="none" class="ion-item">
+      <ion-note color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        L'email est requis et doit être valide.
+      </ion-note>
+    
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>mot de passe </legend> 
+          <legend>🔐 Mot de passe</legend>
           <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
         </fieldset>
       </ion-item>
-      <p class="forget-text"><a (click)="change('forget')">mot de passe oublié ?</a></p>
-      <p class="signup-text">vous ètes nouveau ici &nbsp;<a (click)="change('signup')">s'inscrire ?</a></p>
-      <ion-button class="login-button" (click)="login()" expand="block">se connecter </ion-button>
+      <ion-note color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        Le mot de passe est requis.
+      </ion-note>
+    
+      <p class="forget-text">
+        <a (click)="change('forget')">Mot de passe oublié ?</a>
+      </p>
+      <p class="signup-text">
+        Vous êtes nouveau ici ? <a (click)="change('signup')">Créer un compte</a>
+      </p>
+    
+      <ion-button class="login-button" type="submit" expand="block" color="primary">
+        Se connecter
+      </ion-button>
     </form>
+    
   </div>
 
-  <!-- Sign up page -->
+  <!-- Inscription -->
   <div class="container" *ngIf="screen == 'signup'">
-    <img src="assets/img1.png" alt="Image de bienvenue" class="header-image">
-    <h1 class="heading">🚀 Créer un nouveau compte <br><br></h1>
-    <br>
-    <form [formGroup]="formData" class="centered-form">
-      <ion-item lines="none" class="ion-item">
+    <img src="assets/logo3.png.png" alt="Image d'inscription" class="header-image" />
+    <h1 class="heading">Créer un nouveau compte</h1>
+
+    <form [formGroup]="registerForm" *ngIf="screen === 'signup'" (ngSubmit)="register()">
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>Nom & prénom</legend> 
-          <ion-input formControlName="name" type="text" placeholder="entrer votre nom & prénom "></ion-input>
+          <legend>🧑 Nom</legend>
+          <ion-input formControlName="nom" placeholder="Votre nom"></ion-input>
         </fieldset>
       </ion-item>
-      <ion-item lines="none" class="ion-item">
+      <ion-note color="danger" *ngIf="registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid">
+        Le nom est requis.
+      </ion-note>
+    
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>Email </legend> 
+          <legend>🧑 Prénom</legend>
+          <ion-input formControlName="prenom" placeholder="Votre prénom"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-note color="danger" *ngIf="registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid">
+        Le prénom est requis.
+      </ion-note>
+    
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>📧 Email</legend>
           <ion-input formControlName="email" type="email" placeholder="email@domaine.com"></ion-input>
         </fieldset>
       </ion-item>
-      <ion-item lines="none" class="ion-item">
+      <ion-note color="danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+        L'email est requis et doit être valide.
+      </ion-note>
+    
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>mot de passe</legend> 
+          <legend>🔐 Mot de passe</legend>
           <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
         </fieldset>
       </ion-item>
-      <ion-item lines="none" class="ion-item">
+      <ion-note color="danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+        Le mot de passe est requis.
+      </ion-note>
+    
+      <ion-item lines="none">
         <fieldset class="input-item">
-          <legend>Confirmer mot de passe</legend> 
+          <legend>🔁 Confirmer mot de passe</legend>
           <ion-input formControlName="confirmPassword" type="password" placeholder="*******"></ion-input>
         </fieldset>
       </ion-item>
-      <p class="signup-text">déja membre&nbsp;<a (click)="change('signin')">se connecter ?</a></p>
-      <ion-button class="login-button" (click)="register()" expand="block">s'inscrire</ion-button>
+      <ion-note color="danger" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+        Veuillez confirmer le mot de passe.
+      </ion-note>
+    
+      <p class="signup-text">
+        Déjà membre ? <a (click)="change('signin')">Se connecter</a>
+      </p>
+    
+      <ion-button class="login-button" type="submit" expand="block" color="success">
+        S'inscrire
+      </ion-button>
     </form>
+    
   </div>
 
-  <!-- Forget password page -->
+  <!-- Mot de passe oublié -->
   <div class="container" *ngIf="screen == 'forget'">
-    <img src="assets/img1.png" alt="Image de bienvenue" class="header-image">
-    <h1 class="heading">mot de passe oublié ?<br><br></h1>
-    <p class="para"> Veuiller Entrer votre email pour rénitialiser votre mot de passe </p>
+    <img src="assets/logo3.png.png" alt="Image d'oubli de mot de passe" class="header-image" />
+    <h1 class="heading">🔑 Mot de passe oublié ?</h1>
+    <p class="para">
+      <b>Veuillez entrer votre adresse email pour réinitialiser votre mot de passe.</b>
+    </p>
+
     <ion-item lines="none" class="ion-item">
       <fieldset class="input-item">
-        <legend>Email </legend> 
-        <ion-input type="email" placeholder="email@domain.com"></ion-input>
+        <legend>📧 Email</legend>
+        <ion-input type="email" placeholder="email@domain.com" required></ion-input>
       </fieldset>
     </ion-item>
-    <p class="signup-text">souvient de mot de passe &nbsp;<a (click)="change('signin')">Sign In?</a></p>
-    <ion-button class="login-button" expand="block">Rénitialiser </ion-button>
+
+    <p class="signup-text">
+      Vous vous souvenez de votre mot de passe ? <a (click)="change('signin')">Se connecter</a>
+    </p>
+
+    <ion-button class="login-button" expand="block" color="warning">
+      🔄 Réinitialiser
+    </ion-button>
   </div>
 
 </ion-content>
 
-<ion-footer color="white">
+<ion-footer>
   <ion-toolbar>
-    <p class="copyright">❤️ &nbsp;<a>Trashy</a></p>
+    <p class="ion-text-center ion-padding">❤️ &nbsp; <a>Trashy +</a></p>
   </ion-toolbar>
 </ion-footer>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth-component',
@@ -8,44 +10,86 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-component.component.scss'],
 })
 export class AuthComponentComponent implements OnInit {
-  formData: FormGroup;
-  screen: string = 'signin'; // Par défaut, afficher la page de connexion
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  screen: string = 'signin';
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.formData = this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      name: ['', Validators.required],  // Pour le formulaire d'inscription
-      confirmPassword: ['', [Validators.required]],  // Pour l'inscription
+      password: ['', Validators.required]
+    });
+
+    this.registerForm = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
-  // Changer entre les vues de formulaire
   change(view: string) {
     this.screen = view;
   }
 
-  // Méthode pour la connexion
+  // Connexion
   login() {
-    if (this.formData.valid) {
-      const { email, password } = this.formData.value;
-      console.log('Connexion réussie avec', email, password);
-      this.router.navigate(['/espacecitoyen']);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      const payload = { action: 'login', email, password };
+
+      this.http.post('http://localhost/backend/controllers/auth.php', payload).subscribe(
+        (res: any) => {
+          if (res.status === 'success') {
+            console.log('Connexion réussie', res);
+            this.router.navigate(['/espacecitoyen']);
+          } else {
+            alert(res.message);
+          }
+        },
+        (err) => {
+          alert("Erreur lors de la connexion au serveur.");
+        }
+      );
     } else {
-      console.error('Formulaire invalide');
+      alert('Veuillez remplir tous les champs requis.');
     }
   }
 
-  // Méthode pour l'inscription
+  // Inscription
   register() {
-    if (this.formData.valid && this.formData.value.password === this.formData.value.confirmPassword) {
-      const { name, email, password } = this.formData.value;
-      console.log('Inscription réussie avec', name, email, password);
-      this.router.navigate(['/espacecitoyen']);
+    if (this.registerForm.valid) {
+      const { nom, prenom, email, password, confirmPassword } = this.registerForm.value;
+      if (password !== confirmPassword) {
+        alert('Les mots de passe ne correspondent pas.');
+        return;
+      }
+
+      const payload = { nom, prenom, email, password, action: 'register' };
+
+      this.http.post('http://localhost/backend/controllers/auth.php', payload).subscribe(
+        (res: any) => {
+          if (res.status === 'success') {
+            console.log("Inscription réussie !");
+            this.router.navigate(['/espacecitoyen']);
+          } else {
+            alert(res.message);
+          }
+        },
+        (err) => {
+          alert("Erreur lors de la connexion au serveur.");
+        }
+      );
     } else {
-      console.error('Formulaire d\'inscription invalide ou mots de passe non identiques');
+      alert('Veuillez remplir tous les champs correctement.');
     }
   }
 }

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component'; // Chemin correct
+import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
+
+// Interface pour les props du modal
+interface ModalProps {
+  message: string;
+}
 
 @Component({
   selector: 'app-signalerprobleme',
@@ -25,21 +30,24 @@ export class SignalerProblemePage {
 
   constructor(private modalController: ModalController) {}
 
+  // Méthode pour soumettre un rapport de problème
   async submitReport() {
     if (!this.selectedProblem || !this.selectedLocation) {
       console.log('Veuillez sélectionner un problème et un lieu.');
       return;
     }
 
+    // Création du modal avec les props de type ModalProps
     const modal = await this.modalController.create({
       component: ConfirmationModalComponent,
       componentProps: {
         message: 'MERCI DE NOUS ENVOYER CE PROBLÈME POUR QU\'ON PUISSE LE RÉGLER.',
-      },
+      } as ModalProps, // On indique que le message fait partie de ModalProps
     });
 
     await modal.present();
 
+    // Réinitialisation des champs après soumission
     this.selectedProblem = null;
     this.selectedLocation = null;
     this.comment = '';

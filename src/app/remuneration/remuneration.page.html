@@ -1,9 +1,75 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>remuneration</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Déclaration de déchets plastiques</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="split-layout">
+  <div class="container">
+    <!-- Moitié gauche : Vidéo -->
+    <div class="left-side">
+      <video autoplay muted loop class="background-video">
+        <source src="assets/video.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <div class="video-overlay"></div>
+    </div>
 
+    <!-- Moitié droite : Formulaire -->
+    <div class="right-side">
+      <div class="form-container">
+        <ion-item lines="none">
+          <ion-label class="subtitle" position="stacked">📍 Localisation</ion-label>
+          <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez votre localisation" interface="popover">
+            <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
+            <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
+            <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
+            <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
+            <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
+            <ion-select-option value="El Hara">El Hara</ion-select-option>
+            <ion-select-option value="Koutin">Koutin</ion-select-option>
+            <ion-select-option value="Smar">Smar</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">⚖️ Poids (kg)</ion-label>
+          <ion-input type="number" [(ngModel)]="declaration.poids" (ionInput)="calculerPoints()" min="0.1" step="0.1"></ion-input>
+        </ion-item>
+
+        <ion-text *ngIf="declaration.poids <= 0" color="danger">
+          <p class="ion-padding-start">⚠️ Le poids doit être supérieur à zéro.</p>
+        </ion-text>
+
+        <ion-card *ngIf="declaration.points && declaration.poids > 0" color="light">
+          <ion-card-header>
+            <ion-card-title>🎁 Points d'achat</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Vous avez gagné : <strong>{{ declaration.points }} points</strong> 🌟</p>
+            <ion-text color="success">
+              <strong>Bravo !</strong> Continuez à recycler pour en gagner davantage !
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-button expand="block" color="success" class="ion-margin-top" (click)="envoyerDeclaration()" [disabled]="declaration.poids <= 0 || !lieu">
+          Envoyer la déclaration
+        </ion-button>
+
+        <ion-card class="ion-margin-top">
+          <ion-card-header>
+            <ion-card-title> Comment ça fonctionne ?</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              En déclarant le poids des déchets plastiques collectés, vous gagnez des points d'achat.
+              <br>Chaque kilo de plastique vous rapporte <strong>5 points</strong> 🌿.
+            </p>
+            <p>Ce système encourage le recyclage et aide à préserver notre environnement 🌍.</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
 </ion-content>

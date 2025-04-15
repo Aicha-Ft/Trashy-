@@ -36,7 +36,7 @@
 /* Style du paragraphe */
 .para {
   font-size: 16px;
-  color: #7f8c8d;
+  color: #3b5253;
   margin-bottom: 32px;
 }
 
@@ -68,7 +68,7 @@
 
 .button-item:hover {
   transform: translateY(-5px); /* Effet de levée au survol */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+  box-shadow: 0 8px 25px rgba(20, 219, 53, 0.2); /* Ombre plus prononcée au survol */
 }
 
 /* Style des icônes des boutons */
@@ -96,12 +96,12 @@
 }
 
 .custom-button:first-of-type {
-  --background: linear-gradient(135deg, #3498db, #2980b9); /* Dégradé bleu */
+  --background: linear-gradient(135deg, #57c92a, #2980b9); /* Dégradé bleu */
   --box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Ombre portée */
 }
 
 .custom-button:last-of-type {
-  --background: linear-gradient(135deg, #f17f32, #f17f32); /* Dégradé rouge */
+  --background: linear-gradient(135deg, #3eaa28, #3eaa28); /* Dégradé rouge */
   --box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); /* Ombre portée */
 }
 

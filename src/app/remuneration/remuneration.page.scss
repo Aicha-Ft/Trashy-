@@ -1,0 +1,93 @@
+ion-content.split-layout {
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .left-side,
+  .right-side {
+    width: 50%;
+    height: 100%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 50%; 
+    }
+  }
+
+  /* Partie gauche : Vidéo */
+  .left-side {
+    position: relative;
+
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+  }
+
+  /* Partie droite : Formulaire */
+  .right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffc2;
+    padding: 20px;
+
+    .form-container {
+      width: 100%;
+      max-width: 500px;
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    ion-item {
+      margin-bottom: 15px;
+    }
+
+    ion-button {
+      --background: #2a8002;
+      font-weight: bold;
+    }
+
+    ion-text[color="danger"] {
+      font-size: 14px;
+    }
+
+    ion-card {
+      margin-top: 20px;
+    }
+
+    ion-card-header {
+      background: #e94326;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      ion-card-title {
+        color: white;
+      }
+    }
+  }
+}

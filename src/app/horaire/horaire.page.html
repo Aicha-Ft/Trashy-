@@ -1,36 +1,50 @@
-<ion-header>
+﻿<ion-header>
   <ion-toolbar color="primary">
-    <ion-title>🗺️ Consultation des horaires</ion-title>
+    <ion-title>Consultation des horaires des collectes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>📍 Choisissez un lieu</ion-label>
-    <ion-select (ionChange)="afficherHoraires($event.detail.value)">
-      <ion-select-option *ngFor="let lieu of lieux" [value]="lieu">🏘️ {{ lieu.nom }}</ion-select-option>
-    </ion-select>
-  </ion-item>
+  <div class="form-container">
+    
+    <!-- Partie gauche : GIF -->
+    <div class="gif-side">
+      <img src="assets/vid.mp4" class="gif-img" />
+    </div>
 
-  <ion-card *ngIf="horaires" class="fade-in">
-    <ion-card-header>
-      <ion-card-title>🕒 Horaires de collecte</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      🚮 Les horaires de collectes dans votre quartier seront : {{ horaires }}
-    </ion-card-content>
+    <!-- Partie droite : Formulaire -->
+    <div class="form-side">
+      <div class="form-wrapper">
+        <form (ngSubmit)="openHoraireModal(form.value)" #form="ngForm" class="form-content">
 
-    <div id="map" style="height: 300px; width: 100%; border-radius: 10px;"></div>
-  </ion-card>
+          <ion-item>
+            <ion-label>Rue</ion-label>
+            <ion-input type="text" name="streetName" ngModel required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Code Postal</ion-label>
+            <ion-input type="text" name="postalCode" ngModel required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Sélectionner votre lieu</ion-label>
+            <ion-select name="selectedLocation" ngModel required>
+              <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
+              <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
+              <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
+              <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
+              <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
+              <ion-select-option value="El Hara">El Hara</ion-select-option>
+              <ion-select-option value="Koutin">Koutin</ion-select-option>
+              <ion-select-option value="Smar">Smar</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" [disabled]="form.invalid">Consulter</ion-button>
+        </form>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
-
-<style>
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-</style>

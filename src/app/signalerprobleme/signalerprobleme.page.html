@@ -4,53 +4,59 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="container">
-    <!-- Titre principal -->
-    <h2 class="title">Veuillez choisir le problème à signaler :</h2>
+<ion-content class="split-screen">
+  <!-- Partie vidéo à gauche -->
+  <div class="left-half">
+    <video class="video-bg" autoplay muted loop>
+      <source src="assets/video2.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
 
-    <!-- Liste des problèmes -->
-    <ion-list class="problem-list">
-      <ion-radio-group [(ngModel)]="probleme">
-        <ion-item>
-          <ion-radio slot="start" value="poubelle_pleine"></ion-radio>
-          <ion-label>Poubelle pleine</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" value="poubelle_defectueuse"></ion-radio>
-          <ion-label>Poubelle défectueuse</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" value="dechet_non_collecte"></ion-radio>
-          <ion-label>Déchet non collecté</ion-label>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
+  <!-- Partie formulaire à droite -->
+  <div class="right-half">
+    <div class="container">
+      <h2 class="title">Veuillez choisir le problème à signaler :</h2>
 
-    <!-- Sélecteur de lieu -->
-    <h3 class="subtitle">Lieu du problème :</h3>
-    <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez un lieu" class="location-select">
-      <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
-      <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
-      <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
-      <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
-      <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
-      <ion-select-option value="El Hara">El Hara</ion-select-option>
-      <ion-select-option value="Koutin">Koutin</ion-select-option>
-      <ion-select-option value="Smar">Smar</ion-select-option>
-    </ion-select>
+      <ion-list class="problem-list">
+        <ion-radio-group [(ngModel)]="probleme">
+          <ion-item>
+            <ion-radio slot="start" value="poubelle_pleine"></ion-radio>
+            <ion-label>Poubelle pleine</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-radio slot="start" value="poubelle_defectueuse"></ion-radio>
+            <ion-label>Poubelle défectueuse</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-radio slot="start" value="dechet_non_collecte"></ion-radio>
+            <ion-label>Déchet non collecté</ion-label>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
 
-    <!-- Zone de texte pour le commentaire -->
-    <h3 class="subtitle">Ajouter un commentaire (optionnel) :</h3>
-    <ion-textarea
-      [(ngModel)]="commentaire"
-      placeholder="Décrivez le problème ici..."
-      class="comment-textarea"
-    ></ion-textarea>
+      <h3 class="subtitle">Lieu du problème :</h3>
+      <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez un lieu" class="location-select">
+        <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
+        <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
+        <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
+        <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
+        <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
+        <ion-select-option value="El Hara">El Hara</ion-select-option>
+        <ion-select-option value="Koutin">Koutin</ion-select-option>
+        <ion-select-option value="Smar">Smar</ion-select-option>
+      </ion-select>
 
-    <!-- Bouton Envoyer -->
-    <ion-button expand="block" color="primary" class="submit-button" (click)="envoyerSignalement()">
-      Envoyer
-    </ion-button>
+      <h3 class="subtitle">Ajouter un commentaire (optionnel) :</h3>
+      <ion-textarea
+        [(ngModel)]="commentaire"
+        placeholder="Décrivez le problème ici..."
+        class="comment-textarea"
+      ></ion-textarea>
+
+      <ion-button expand="block" color="primary" class="submit-button" (click)="envoyerSignalement()">
+        Envoyer
+      </ion-button>
+    </div>
   </div>
 </ion-content>
