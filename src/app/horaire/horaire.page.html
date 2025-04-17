@@ -6,27 +6,28 @@
 
 <ion-content>
   <div class="form-container">
-    
     <!-- Partie gauche : GIF -->
     <div class="gif-side">
-      <img src="assets/vid.mp4" class="gif-img" />
+      <video class="gif-img" autoplay muted loop playsinline>
+        <source src="assets/vid.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
     </div>
 
     <!-- Partie droite : Formulaire -->
     <div class="form-side">
       <div class="form-wrapper">
         <form (ngSubmit)="openHoraireModal(form.value)" #form="ngForm" class="form-content">
-
           <ion-item>
             <ion-label>Rue</ion-label>
             <ion-input type="text" name="streetName" ngModel required></ion-input>
           </ion-item>
-
+        
           <ion-item>
             <ion-label>Code Postal</ion-label>
             <ion-input type="text" name="postalCode" ngModel required></ion-input>
           </ion-item>
-
+        
           <ion-item>
             <ion-label>Sélectionner votre lieu</ion-label>
             <ion-select name="selectedLocation" ngModel required>
@@ -40,11 +41,11 @@
               <ion-select-option value="Smar">Smar</ion-select-option>
             </ion-select>
           </ion-item>
-
+        
           <ion-button expand="block" type="submit" [disabled]="form.invalid">Consulter</ion-button>
         </form>
+        
       </div>
     </div>
-
   </div>
 </ion-content>

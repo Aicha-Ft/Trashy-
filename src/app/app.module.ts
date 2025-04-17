@@ -22,6 +22,7 @@ import { HorairePageModule } from './horaire/horaire.module';
     ReactiveFormsModule,
     HttpClientModule,
     HorairePageModule,
+    FormsModule,
   ],
   providers: [
     CommonModule,

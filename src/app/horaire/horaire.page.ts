@@ -1,4 +1,3 @@
-// src/app/horaire/horaire.page.ts
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HoraireModalComponent } from './horairemodal/horairemodal.component';
@@ -10,43 +9,46 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./horaire.page.scss'],
 })
 export class HorairePage {
-  
-  horairesParLieu: { [key: string]: string[] } = {
-    'Route Tataouine': ['8h - 10h', '14h - 16h'],
-    'Route Gabes': ['9h - 11h', '15h - 17h'],
-    'Route Ben Gerdan': ['7h - 9h', '13h - 15h'],
-    'Route Djerba': ['10h - 12h', '18h - 20h'],
-    'Route Ben Khdach': ['6h - 8h', '12h - 14h'],
-    'El Hara': ['9h - 10h30', '18h - 19h30'],
-    'Koutin': ['7h30 - 9h30', '17h - 18h30'],
-    'Smar': ['8h - 10h', '16h - 18h']
-  };
-
+  lieux: string[] = [
+    'Route Tataouine', 'Route Gabes', 'Route Ben Gerdan', 'Route Djerba',
+    'Route Ben Khdach', 'El Hara', 'Koutin', 'Smar'
+  ];
 
   constructor(
     private modalController: ModalController,
     private http: HttpClient
   ) {}
+
   async openHoraireModal(formData: any) {
-    const selectedLocation = formData.selectedLocation;
+    console.log('Form data:', formData);  // Vérifie si la méthode est appelée et si les données sont passées
   
-    this.http.post('http://localhost/backend/controllers/horaire.php', {
-      lieu: selectedLocation
-    }).subscribe(async (response: any) => {
-      if (response.success) {
-        const modal = await this.modalController.create({
-          component: HoraireModalComponent,
-          componentProps: {
-            location: selectedLocation,
-            horaires: response.data.horaires
-          }
-        });
+    const selectedLocation = formData.selectedLocation; // Récupère le lieu sélectionné
+    console.log('Selected Location:', selectedLocation);  // Vérifie que la localisation est correctement récupérée
   
-        await modal.present();
-      } else {
-        console.error('Erreur :', response.message);
-      }
-    });
+    // Requête pour récupérer les horaires depuis le backend
+    this.http.get(`http://localhost/backend/controllers/horaire.php?lieu=${selectedLocation}`)
+      .subscribe(async (response: any) => {
+        console.log(response); // Vérifie la réponse de l'API dans la console
+  
+        if (response.success && response.data && response.data.length > 0) {
+          console.log('Données passées au modal:', { location: selectedLocation, horaires: response.data });
+  
+          // Si les horaires sont récupérés, on ouvre le modal avec les horaires
+          const modal = await this.modalController.create({
+            component: HoraireModalComponent,
+            componentProps: {
+              location: selectedLocation,
+              horaires: response.data.map(horaire => horaire.horaire)  // On extrait uniquement les horaires
+            }
+          });
+  
+          await modal.present();
+        } else {
+          console.error('Aucun horaire disponible pour ce lieu');
+        }
+      }, error => {
+        console.error('Erreur lors de la récupération des horaires', error);
+      });
   }
   
-}
+}  
