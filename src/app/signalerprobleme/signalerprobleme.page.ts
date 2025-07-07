@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
-
-// Interface pour les props du modal
-interface ModalProps {
-  message: string;
-}
+import { SignalementService } from '../services/signalement.service';
 
 @Component({
   selector: 'app-signalerprobleme',
@@ -13,43 +9,93 @@ interface ModalProps {
   styleUrls: ['./signalerprobleme.page.scss'],
 })
 export class SignalerProblemePage {
-  selectedProblem: string | null = null;
-  selectedLocation: string | null = null;
-  comment: string = '';
-
-  locations: string[] = [
-    'Route Tataouine',
-    'Route Gabes',
-    'Route Ben Gerdan',
-    'Route Djerba',
-    'Route Ben Khdach',
-    'El Hara',
-    'Koutin',
-    'Smar',
+ 
+  typeProblemeOptions = [
+    { value: 'poubelle_pleine', label: 'Poubelle pleine' },
+    { value: 'poubelle_defectueuse', label: 'Poubelle défectueuse' },
+    { value: 'dechet_non_collecte', label: 'Déchet non collecté' }
   ];
 
-  constructor(private modalController: ModalController) {}
+  
+  lieuOptions = [
+    { value: 'Avenue Habib Bourguiba, Médenine', label: 'Avenue Habib Bourguiba, Médenine' },
+    { value: 'Rue Ibn Khaldoun, Médenine', label: 'Rue Ibn Khaldoun, Médenine' },
+    { value: 'Marché Central, Médenine', label: 'Marché Central, Médenine' },
+    { value: 'Centre Commercial, Médenine', label: 'Centre Commercial, Médenine' },
+    { value: 'Rue Ali Bach Hamba, Médenine', label: 'Rue Ali Bach Hamba, Médenine' },
+    { value: 'Avenue 7 Novembre, Médenine', label: 'Avenue 7 Novembre, Médenine' },
+    { value: 'Place de la République, Médenine', label: 'Place de la République, Médenine' },
+    { value: 'Hôtel Djerba, Médenine', label: 'Hôtel Djerba, Médenine' }
+  ];
 
-  // Méthode pour soumettre un rapport de problème
-  async submitReport() {
-    if (!this.selectedProblem || !this.selectedLocation) {
-      console.log('Veuillez sélectionner un problème et un lieu.');
+ 
+  typeProbleme: string | null = null;  
+  lieu: string | null = null;
+  commentaire: string = '';
+  isSubmitting: boolean = false;
+
+  constructor(
+    private modalController: ModalController,
+    private signalementService: SignalementService,
+    private loadingController: LoadingController,
+    private toastController: ToastController
+  ) {}
+
+  async envoyerSignalement() {
+    console.log('type_probleme sélectionné :', this.typeProbleme);
+    console.log('lieu sélectionné :', this.lieu);
+
+    if (!this.typeProbleme || !this.lieu) {
+      this.presentToast('votre déclaration n\'été pas envoyée veuillez réssayer encore une fois   ! ⚠️', 'danger');
       return;
     }
 
-    // Création du modal avec les props de type ModalProps
-    const modal = await this.modalController.create({
-      component: ConfirmationModalComponent,
-      componentProps: {
-        message: 'MERCI DE NOUS ENVOYER CE PROBLÈME POUR QU\'ON PUISSE LE RÉGLER.',
-      } as ModalProps, // On indique que le message fait partie de ModalProps
+    const loading = await this.loadingController.create({
+      message: 'Envoi en cours...',
+      spinner: 'circles'
     });
+    await loading.present();
+    this.isSubmitting = true;
 
-    await modal.present();
+    const data = {
+      type_probleme: this.typeProbleme,
+      lieu: this.lieu,
+      commentaire: this.commentaire
+    };
 
-    // Réinitialisation des champs après soumission
-    this.selectedProblem = null;
-    this.selectedLocation = null;
-    this.comment = '';
+    this.signalementService.envoyerSignalement(data).subscribe({
+      next: async (response: any) => {
+        console.log('Réponse serveur :', response);
+        await loading.dismiss();
+        this.isSubmitting = false;
+
+        const modal = await this.modalController.create({
+          component: ConfirmationModalComponent,
+          componentProps: { message: "Merci pour votre signalement !" }
+        });
+        await modal.present();
+
+        
+        this.typeProbleme = null;
+        this.lieu = null;
+        this.commentaire = '';
+      },
+      error: async (err) => {
+        console.error('Erreur lors de l\'envoi du signalement :', err);
+        await loading.dismiss();
+        this.isSubmitting = false;
+        this.presentToast('Erreur lors de l\'envoi du signalement. Veuillez réessayer.', 'danger');
+      }
+    });
+  }
+
+  async presentToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

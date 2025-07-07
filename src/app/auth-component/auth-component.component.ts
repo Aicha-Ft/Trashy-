@@ -46,7 +46,7 @@ export class AuthComponentComponent implements OnInit {
       const { email, password } = this.loginForm.value;
       const payload = { action: 'login', email, password };
 
-      this.http.post('http://localhost/backend/controllers/auth.php', payload).subscribe(
+      this.http.post('http://192.168.7.25:8000/api/login/', payload).subscribe(
         (res: any) => {
           if (res.status === 'success') {
             console.log('Connexion réussie', res);
@@ -75,7 +75,7 @@ export class AuthComponentComponent implements OnInit {
 
       const payload = { nom, prenom, email, password, action: 'register' };
 
-      this.http.post('http://localhost/backend/controllers/auth.php', payload).subscribe(
+      this.http.post('http://192.168.7.25:8000/api/register/', payload).subscribe(
         (res: any) => {
           if (res.status === 'success') {
             console.log("Inscription réussie !");

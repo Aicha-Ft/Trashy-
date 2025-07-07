@@ -6,7 +6,7 @@
 
 <ion-content fullscreen class="split-layout">
   <div class="container">
-    <!-- Moitié gauche : Vidéo -->
+    
     <div class="left-side">
       <video autoplay muted loop class="background-video">
         <source src="assets/video.mp4" type="video/mp4" />
@@ -15,21 +15,21 @@
       <div class="video-overlay"></div>
     </div>
 
-    <!-- Moitié droite : Formulaire -->
+   
     <div class="right-side">
       <div class="form-container">
         <ion-item lines="none">
           <ion-label class="subtitle" position="stacked">📍 Localisation</ion-label>
           <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez votre localisation" interface="popover">
-            <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
-            <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
-            <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
-            <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
-            <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
-            <ion-select-option value="El Hara">El Hara</ion-select-option>
-            <ion-select-option value="Koutin">Koutin</ion-select-option>
-            <ion-select-option value="Smar">Smar</ion-select-option>
-          </ion-select>
+          <ion-select-option value="Avenue Habib Bourguiba, Médenine">Avenue Habib Bourguiba, Médenine</ion-select-option>
+          <ion-select-option value="Rue Ibn Khaldoun, Médenine">Rue Ibn Khaldoun, Médenine</ion-select-option>
+          <ion-select-option value="Marché Central, Médenine">Marché Central, Médenine</ion-select-option>
+          <ion-select-option value="Centre Commercial, Médenine">Centre Commercial, Médenine</ion-select-option>
+          <ion-select-option value="Rue Ali Bach Hamba, Médenine">Rue Ali Bach Hamba, Médenine</ion-select-option>
+          <ion-select-option value="Avenue 7 Novembre, Médenine">Avenue 7 Novembre, Médenine</ion-select-option>
+          <ion-select-option value="Place de la République, Médenine">Place de la République, Médenine</ion-select-option>
+          <ion-select-option value="Hôtel Djerba, Médenine">Hôtel Djerba, Médenine</ion-select-option>
+        </ion-select>
         </ion-item>
 
         <ion-item>
@@ -53,7 +53,7 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-button expand="block" color="success" class="ion-margin-top" (click)="envoyerDeclaration()" [disabled]="declaration.poids <= 0 || !lieu">
+        <ion-button expand="block" color="success" class="ion-margin-top" (click)="envoyerDeclaration()" >
           Envoyer la déclaration
         </ion-button>
 

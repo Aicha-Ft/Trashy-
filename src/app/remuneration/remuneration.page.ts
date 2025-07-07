@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { RemunerationService } from '../services/remuneration.service';
 
 @Component({
   selector: 'app-remuneration',
@@ -9,15 +10,9 @@ import { AlertController } from '@ionic/angular';
 export class RemunerationPage {
 
   locations: string[] = [
-      'Route Tataouine',
-      'Route Gabes',
-      'Route Ben Gerdan',
-      'Route Djerba',
-      'Route Ben Khdach',
-      'El Hara',
-      'Koutin',
-      'Smar',
-    ];
+    'Avenue Habib Bourguiba, Médenine', 'Rue Ibn Khaldoun, Médenine', 'Marché Central, Médenine', 'Centre Commercial, Médenine',
+    'Rue Ali Bach Hamba, Médenine', 'Avenue 7 Novembre, Médenine', 'Place de la République, Médenine', 'Hôtel Djerba, Médenine'
+  ];
 
   declaration = {
     lieu: '',
@@ -25,7 +20,10 @@ export class RemunerationPage {
     points: 0
   };
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private remunerationService: RemunerationService
+  ) {}
 
   calculerPoints() {
     if (this.declaration.poids && this.declaration.poids > 0) {
@@ -37,15 +35,23 @@ export class RemunerationPage {
 
   async envoyerDeclaration() {
     if (!this.declaration.lieu || !this.declaration.poids || this.declaration.poids <= 0) {
-      await this.afficherAlerte('Erreur', 'Veuillez remplir tous les champs correctement ! ⚠️');
+      await this.afficherAlerte('Erreur', ' votre déclaration n\'été pas envoyée veuillez réssayer encore une fois   ! ⚠️');
       return;
     }
 
-    await this.afficherAlerte('Déclaration envoyée ✅',
-      `Pour ${this.declaration.lieu} : ${this.declaration.poids}kg → ${this.declaration.points} points 🌱`
-    );
-
-    this.resetForm();
+    // Envoi vers le backend
+    this.remunerationService.envoyerRemuneration(this.declaration).subscribe({
+      next: async (response) => {
+        await this.afficherAlerte('Déclaration envoyée ✅',
+          `Pour ${this.declaration.lieu} : ${this.declaration.poids}kg → ${this.declaration.points} points 🌱`
+        );
+        this.resetForm();
+      },
+      error: async (error) => {
+        console.error('Erreur backend', error);
+        await this.afficherAlerte('Erreur', 'Impossible d\'envoyer la déclaration.');
+      }
+    });
   }
 
   resetForm() {

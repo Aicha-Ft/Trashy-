@@ -1,4 +1,4 @@
-/* Centrer les éléments */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,40 +6,39 @@
     justify-content: center;
     text-align: center;
     height: 100%;
-    padding: 20px; /* Ajouter un peu d'espace autour du contenu */
-  }
+    padding: 20px; 
   
-  /* Style pour l'image */
+ 
   .header-image {
     width: 150px;
     height: auto;
     margin-bottom: 24px;
-    border-radius: 80%; /* Image ronde */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre portée */
-    transition: transform 0.3s ease; /* Animation au survol */
+    border-radius: 80%; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease; 
   }
   .header-image:hover {
-    transform: scale(1.1); /* Effet de zoom au survol */
+    transform: scale(1.1); 
   }
-  /* Centrer le formulaire */
+
   .centered-form {
     width: 100%;
-    max-width: 400px; /* Ajustez la largeur maximale selon vos besoins */
+    max-width: 400px; 
   }
   
-  /* Style pour les titres */
+ 
   .heading {
-    font-size: 24px; /* Taille de police pour les titres */
+    font-size: 24px; 
     margin-bottom: 20px;
   }
   
-  /* Style pour les paragraphes */
+  
   .para {
-    font-size: 16px; /* Taille de police pour les paragraphes */
+    font-size: 16px;
     margin-bottom: 20px;
   }
   
-  /* Style pour les champs de formulaire */
+
   .ion-item {
     width: 100%;
     margin-bottom: 15px;
@@ -49,23 +48,24 @@
     width: 100%;
   }
   
-  /* Style pour les boutons */
+  
   .login-button {
     margin-top: 20px;
-    font-size: 16px; /* Taille de police pour les boutons */
+    font-size: 16px; 
   }
   
-  /* Style pour les liens */
+  
   .forget-text, .signup-text {
-    font-size: 14px; /* Taille de police pour les liens */
+    font-size: 14px; 
     margin-top: 10px;
   }
   
   .forget-text a, .signup-text a {
-    color: #140f64; /* Couleur des liens */
+    color: #140f64; 
     text-decoration: none;
   }
   
   .forget-text a:hover, .signup-text a:hover {
-    text-decoration: underline; /* Souligner les liens au survol */
+    text-decoration: underline; 
   }
+}

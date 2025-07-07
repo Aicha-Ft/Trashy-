@@ -1,6 +1,30 @@
+
 .modal-content {
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-  }
-  
+  background-color: #f9f9f9;  
+  border-radius: 10px;         
+  padding: 20px;
+}
+
+
+.location-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #4CAF50;  
+  margin-bottom: 20px;
+}
+
+
+.horaire-item {
+  font-size: 1.2rem;
+  color: #333;  
+  padding: 10px;
+  border-bottom: 1px solid #ddd;  
+}
+
+
+.no-horaires {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #f44336;  
+  margin-top: 20px;
+}

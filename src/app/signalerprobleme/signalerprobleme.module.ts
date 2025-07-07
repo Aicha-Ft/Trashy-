@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignalerproblemePageRoutingModule } from './signalerprobleme-routing.module';
 
-import { SignalerproblemePage } from './signalerprobleme.page';
+import { SignalerProblemePage } from './signalerprobleme.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { SignalerproblemePage } from './signalerprobleme.page';
     IonicModule,
     SignalerproblemePageRoutingModule
   ],
-  declarations: [SignalerproblemePage]
+  declarations: [SignalerProblemePage]
 })
 export class SignalerproblemePageModule {}

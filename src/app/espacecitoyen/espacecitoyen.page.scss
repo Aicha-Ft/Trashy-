@@ -1,4 +1,4 @@
-/* Style général du conteneur */
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,112 +7,110 @@
   height: 100%;
   padding: 20px;
   text-align: center;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Dégradé de fond */
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); 
 }
 
-/* Style de l'image d'en-tête */
+
 .header-image {
   width: 150px;
   height: auto;
   margin-bottom: 24px;
-  border-radius: 50%; /* Image ronde */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre portée */
-  transition: transform 0.3s ease; /* Animation au survol */
+  border-radius: 50%; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease; 
 }
 
 .header-image:hover {
-  transform: scale(1.1); /* Effet de zoom au survol */
+  transform: scale(1.1); 
 }
 
-/* Style du titre */
 .heading {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 16px;
   color: #2c3e50;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Ombre du texte */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
-/* Style du paragraphe */
+
 .para {
   font-size: 16px;
   color: #3b5253;
   margin-bottom: 32px;
 }
 
-/* Conteneur pour les boutons et les images */
+
 .button-grid {
   display: flex;
-  justify-content: space-between; /* Espacement uniforme entre les boutons */
+  justify-content: space-between; 
   align-items: center;
-  flex-wrap: wrap; /* Permet de faire passer les boutons à la ligne suivante si nécessaire */
+  flex-wrap: wrap; 
   width: 100%;
-  max-width: 900px; /* Largeur maximale pour ajuster les boutons */
+  max-width: 900px; 
   margin-bottom: 32px;
-  gap: 20px; /* Espace entre les boutons */
+  gap: 20px; 
 }
 
-/* Style de chaque élément de bouton */
 .button-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%; /* Ajuste la largeur pour garder les boutons alignés */
-  max-width: 280px; /* Largeur maximale pour chaque bouton */
+  width: 30%; 
+  max-width: 280px; 
   background: #ffffff;
   padding: 20px;
-  border-radius: 20px; /* Coins arrondis */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre portée */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .button-item:hover {
-  transform: translateY(-5px); /* Effet de levée au survol */
-  box-shadow: 0 8px 25px rgba(20, 219, 53, 0.2); /* Ombre plus prononcée au survol */
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 25px rgba(20, 219, 53, 0.2); 
 }
 
-/* Style des icônes des boutons */
+
 .button-icon {
-  width: 80px; /* Taille de l'image */
+  width: 80px; 
   height: auto;
-  margin-bottom: 16px; /* Espace entre l'image et le bouton */
-  border-radius: 50%; /* Icône ronde */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre portée */
+  margin-bottom: 16px; 
+  border-radius: 50%; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* Style des boutons */
+
 .custom-button {
-  --border-radius: 28px; /* Boutons arrondis */
+  --border-radius: 28px; 
   --padding-top: 20px;
   --padding-bottom: 20px;
-  --padding-start: 24px; /* Espacement interne à gauche et à droite */
-  --padding-end: 24px; /* Espacement interne à gauche et à droite */
-  font-size: 18px; /* Taille de police augmentée */
+  --padding-start: 24px; 
+  --padding-end: 24px; 
+  font-size: 18px; 
   font-weight: bold;
-  text-transform: none; /* Empêcher la transformation en majuscules */
-  width: 100%; /* Bouton prend toute la largeur du conteneur */
-  min-width: 300px; /* Largeur minimale pour s'assurer que le texte tient */
-  transition: background 0.3s ease; /* Animation de fond */
+  text-transform: none; 
+  width: 100%; 
+  min-width: 300px; 
+  transition: background 0.3s ease; 
 }
 
 .custom-button:first-of-type {
-  --background: linear-gradient(135deg, #57c92a, #2980b9); /* Dégradé bleu */
-  --box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Ombre portée */
+  --background: linear-gradient(135deg, #57c92a, #2980b9); 
+  --box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); 
 }
 
 .custom-button:last-of-type {
-  --background: linear-gradient(135deg, #3eaa28, #3eaa28); /* Dégradé rouge */
-  --box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); /* Ombre portée */
+  --background: linear-gradient(135deg, #3eaa28, #3eaa28); 
+  --box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); 
 }
 
 .custom-button:hover {
-  --background: linear-gradient(135deg, #2980b9, #3498db); /* Dégradé inversé au survol */
+  --background: linear-gradient(135deg, #2980b9, #3498db); 
 }
 
-/* Style du bouton de déconnexion */
+
 .logout-button {
-  --border-radius: 25px; /* Bouton de déconnexion arrondi */
-  --background: linear-gradient(135deg, #2c3e50, #34495e); /* Dégradé sombre */
+  --border-radius: 25px; 
+  --background: linear-gradient(135deg, #2c3e50, #34495e); 
   --padding-top: 16px;
   --padding-bottom: 16px;
   font-size: 14px;
@@ -120,11 +118,11 @@
   text-transform: none;
   width: 100%;
   max-width: 200px;
-  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3); /* Ombre portée */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
+  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .logout-button:hover {
-  transform: translateY(-3px); /* Effet de levée au survol */
-  box-shadow: 0 8px 20px rgba(44, 62, 80, 0.4); /* Ombre plus prononcée au survol */
+  transform: translateY(-3px); 
+  box-shadow: 0 8px 20px rgba(44, 62, 80, 0.4); 
 }

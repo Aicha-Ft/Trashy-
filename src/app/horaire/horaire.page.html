@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="form-container">
-    <!-- Partie gauche : GIF -->
+   
     <div class="gif-side">
       <video class="gif-img" autoplay muted loop playsinline>
         <source src="assets/vid.mp4" type="video/mp4" />
@@ -14,7 +14,6 @@
       </video>
     </div>
 
-    <!-- Partie droite : Formulaire -->
     <div class="form-side">
       <div class="form-wrapper">
         <form (ngSubmit)="openHoraireModal(form.value)" #form="ngForm" class="form-content">
@@ -22,29 +21,21 @@
             <ion-label>Rue</ion-label>
             <ion-input type="text" name="streetName" ngModel required></ion-input>
           </ion-item>
-        
+
           <ion-item>
             <ion-label>Code Postal</ion-label>
             <ion-input type="text" name="postalCode" ngModel required></ion-input>
           </ion-item>
-        
+
           <ion-item>
             <ion-label>Sélectionner votre lieu</ion-label>
             <ion-select name="selectedLocation" ngModel required>
-              <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
-              <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
-              <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
-              <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
-              <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
-              <ion-select-option value="El Hara">El Hara</ion-select-option>
-              <ion-select-option value="Koutin">Koutin</ion-select-option>
-              <ion-select-option value="Smar">Smar</ion-select-option>
+              <ion-select-option *ngFor="let lieu of lieux" [value]="lieu">{{ lieu }}</ion-select-option>
             </ion-select>
           </ion-item>
-        
+
           <ion-button expand="block" type="submit" [disabled]="form.invalid">Consulter</ion-button>
         </form>
-        
       </div>
     </div>
   </div>

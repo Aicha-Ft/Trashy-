@@ -1,34 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
-import { FormsModule } from '@angular/forms';
-import { GoogleMaps } from '@ionic-native/google-maps';
-
-
 import { HorairePageModule } from './horaire/horaire.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+import { HoraireModalComponent } from './horaire/horairemodal/horairemodal.component';
+
 @NgModule({
-  declarations: [AppComponent, AuthComponentComponent],
+  declarations: [
+    AppComponent,
+    AuthComponentComponent,
+    HoraireModalComponent
+  ],
+  entryComponents: [HoraireModalComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     HorairePageModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule
   ],
-  providers: [
-    CommonModule,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    GoogleMaps // Correct : Le service GoogleMaps dans les providers
-  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true" class="ion-padding" class="center-page">
-
+  
   <!-- Connexion -->
   <div class="container" *ngIf="screen == 'signin'">
     <h1 class="heading"><b>👋 Bienvenue dans l'espace citoyen</b></h1>
@@ -27,9 +27,7 @@
         Le mot de passe est requis.
       </ion-note>
     
-      <p class="forget-text">
-        <a (click)="change('forget')">Mot de passe oublié ?</a>
-      </p>
+      
       <p class="signup-text">
         Vous êtes nouveau ici ? <a (click)="change('signup')">Créer un compte</a>
       </p>
@@ -108,34 +106,7 @@
     
   </div>
 
-  <!-- Mot de passe oublié -->
-  <div class="container" *ngIf="screen == 'forget'">
-    <img src="assets/logo3.png.png" alt="Image d'oubli de mot de passe" class="header-image" />
-    <h1 class="heading">🔑 Mot de passe oublié ?</h1>
-    <p class="para">
-      <b>Veuillez entrer votre adresse email pour réinitialiser votre mot de passe.</b>
-    </p>
 
-    <ion-item lines="none" class="ion-item">
-      <fieldset class="input-item">
-        <legend>📧 Email</legend>
-        <ion-input type="email" placeholder="email@domain.com" required></ion-input>
-      </fieldset>
-    </ion-item>
-
-    <p class="signup-text">
-      Vous vous souvenez de votre mot de passe ? <a (click)="change('signin')">Se connecter</a>
-    </p>
-
-    <ion-button class="login-button" expand="block" color="warning">
-      🔄 Réinitialiser
-    </ion-button>
-  </div>
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <p class="ion-text-center ion-padding">❤️ &nbsp; <a>Trashy +</a></p>
-  </ion-toolbar>
-</ion-footer>

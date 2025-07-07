@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <div class="split-screen"> <!-- Ajouté pour le layout 50/50 -->
+  <div class="split-screen">
 
-    <!-- Partie vidéo à gauche -->
+    <!-- Vidéo -->
     <div class="left-half">
       <video class="video-bg" autoplay muted loop>
         <source src="assets/video2.mp4" type="video/mp4" />
@@ -15,13 +15,13 @@
       </video>
     </div>
 
-    <!-- Partie formulaire à droite -->
+    <!-- Formulaire -->
     <div class="right-half">
       <div class="container">
         <h2 class="title">Veuillez choisir le problème à signaler :</h2>
 
         <ion-list class="problem-list">
-          <ion-radio-group [(ngModel)]="probleme">
+          <ion-radio-group [(ngModel)]="typeProbleme">
             <ion-item>
               <ion-radio slot="start" value="poubelle_pleine"></ion-radio>
               <ion-label>Poubelle pleine</ion-label>
@@ -38,29 +38,28 @@
         </ion-list>
 
         <h3 class="subtitle">Lieu du problème :</h3>
-        <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez un lieu" class="location-select">
-          <ion-select-option value="Route Tataouine">Route Tataouine</ion-select-option>
-          <ion-select-option value="Route Gabes">Route Gabes</ion-select-option>
-          <ion-select-option value="Route Ben Gerdan">Route Ben Gerdan</ion-select-option>
-          <ion-select-option value="Route Djerba">Route Djerba</ion-select-option>
-          <ion-select-option value="Route Ben Khdach">Route Ben Khdach</ion-select-option>
-          <ion-select-option value="El Hara">El Hara</ion-select-option>
-          <ion-select-option value="Koutin">Koutin</ion-select-option>
-          <ion-select-option value="Smar">Smar</ion-select-option>
+        <ion-select [(ngModel)]="lieu" placeholder="Sélectionnez un lieu">
+          <ion-select-option value="Avenue Habib Bourguiba, Médenine">Avenue Habib Bourguiba, Médenine</ion-select-option>
+          <ion-select-option value="Rue Ibn Khaldoun, Médenine">Rue Ibn Khaldoun, Médenine</ion-select-option>
+          <ion-select-option value="Marché Central, Médenine">Marché Central, Médenine</ion-select-option>
+          <ion-select-option value="Centre Commercial, Médenine">Centre Commercial, Médenine</ion-select-option>
+          <ion-select-option value="Rue Ali Bach Hamba, Médenine">Rue Ali Bach Hamba, Médenine</ion-select-option>
+          <ion-select-option value="Avenue 7 Novembre, Médenine">Avenue 7 Novembre, Médenine</ion-select-option>
+          <ion-select-option value="Place de la République, Médenine">Place de la République, Médenine</ion-select-option>
+          <ion-select-option value="Hôtel Djerba, Médenine">Hôtel Djerba, Médenine</ion-select-option>
         </ion-select>
 
         <h3 class="subtitle">Ajouter un commentaire (optionnel) :</h3>
         <ion-textarea
           [(ngModel)]="commentaire"
           placeholder="Décrivez le problème ici..."
-          class="comment-textarea"
         ></ion-textarea>
 
-        <ion-button expand="block" color="primary" class="submit-button" (click)="envoyerSignalement()">
+        <ion-button expand="block" (click)="envoyerSignalement()">
           Envoyer
         </ion-button>
       </div>
     </div>
 
-  </div> <!-- Fin split-screen -->
+  </div>
 </ion-content>
